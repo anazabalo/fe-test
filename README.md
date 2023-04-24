@@ -16,3 +16,11 @@ If you click on a movie title a modal ```components/movieInfo.js``` is shown. Yo
     - A list of planets in the movie
 
 You can find a reference to the GraphQL API here: https://studio.apollographql.com/public/star-wars-swapi/variant/current/explorer
+
+
+## Submitting the test
+
+1. Fork this repository
+2. Solve as many tasks as you can and commit them in a fitting manner
+3. Upload the forked repository and
+4. Share the repository with us by either making it public and send us the repository link _or_ inviting us to the forked project.
