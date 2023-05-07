@@ -34,9 +34,6 @@ module.exports = {
       },
     ],
   },
-  resolve: {
-    alias: { '@mui/styled-engine': '@mui/styled-engine-sc' },
-  },
   plugins: [
     new Dotenv({
       path: './config.env',
