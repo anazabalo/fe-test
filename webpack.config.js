@@ -18,11 +18,24 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
+            plugins: [
+              [
+                'babel-plugin-styled-components',
+                { ssr: true, displayName: true, preprocess: false },
+              ],
+            ],
             presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
       },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
+  },
+  resolve: {
+    alias: { '@mui/styled-engine': '@mui/styled-engine-sc' },
   },
   plugins: [
     new Dotenv({
