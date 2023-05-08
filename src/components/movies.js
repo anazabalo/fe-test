@@ -12,43 +12,16 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from '@mui/material';
-
-const theme = createTheme({
-  components: {
-    MuiTypography: {
-      variants: [
-        {
-          props: {
-            variant: 'h2',
-          },
-          style: {
-            fontSize: 50,
-            fontWeight: 200,
-          },
-        },
-
-        {
-          props: {
-            variant: 'subtitle1',
-          },
-          style: {
-            fontSize: 16,
-            fontWeight: 600,
-          },
-        },
-      ],
-    },
-  },
-});
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
+    '&:hover': {
+      color: '#000000',
+    },
   },
 }));
 
@@ -59,6 +32,23 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
+  },
+  // add transition properties
+  '&:hover': {
+    transition: 'background-color 0.7s ease-in-out',
+    cursor: 'pointer',
+    backgroundColor: '#FEE356',
+    '& > td': {
+      color: '#000000',
+    },
+  },
+  '&:focus': {
+    transition: 'background-color 0.7s ease-in-out',
+    cursor: 'pointer',
+    backgroundColor: theme.palette.secondary,
+    '& > td': {
+      color: '#000000',
+    },
   },
 }));
 function calculateAge(releaseDate) {
@@ -93,7 +83,7 @@ const Movies = () => {
           textAlign: 'center',
         }}
       >
-        <Typography variant="h4" component="h1" sx={{ color: 'primary.dark', fontWeight: '700' }}>
+        <Typography variant="h1" color="secondary">
           Films
         </Typography>
       </Box>
@@ -102,45 +92,60 @@ const Movies = () => {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Title</StyledTableCell>
-              <StyledTableCell>Released</StyledTableCell>
-              <StyledTableCell>Age</StyledTableCell>
-              <StyledTableCell>Director</StyledTableCell>
+              <StyledTableCell>
+                <Typography variant="h4" component="h3">
+                  Title
+                </Typography>
+              </StyledTableCell>
+              <StyledTableCell>
+                <Typography variant="h4" component="h3">
+                  Released
+                </Typography>
+              </StyledTableCell>
+              <StyledTableCell>
+                <Typography variant="h4" component="h3">
+                  Age
+                </Typography>
+              </StyledTableCell>
+              <StyledTableCell>
+                <Typography variant="h4" component="h3">
+                  Director
+                </Typography>
+              </StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <ThemeProvider theme={theme}>
-              {filmsWithAge.map((film) => (
-                <StyledTableRow key={film.id}>
-                  <StyledTableCell onClick={() => setMovieInfoModal(film.id)}>
-                    <Typography variant="h2" component="body1">
-                      {film.title}
-                    </Typography>
-                  </StyledTableCell>
+            {filmsWithAge.map((film) => (
+              <StyledTableRow key={film.id}>
+                <StyledTableCell onClick={() => setMovieInfoModal(film.id)}>
+                  <Typography variant="h2" component="body1" sx={{ cursor: 'pointer' }}>
+                    {film.title}
+                  </Typography>
+                </StyledTableCell>
 
-                  <StyledTableCell>
-                    <Typography variant="subtitle1" component="body1">
-                      {film.releaseDate}{' '}
-                    </Typography>
-                  </StyledTableCell>
+                <StyledTableCell>
+                  <Typography variant="subtitle1" component="body1">
+                    {film.releaseDate}
+                  </Typography>
+                </StyledTableCell>
 
-                  <StyledTableCell>
-                    <Typography variant="subtitle1" component="body1">
-                      {film.age} years
-                    </Typography>
-                  </StyledTableCell>
+                <StyledTableCell>
+                  <Typography variant="subtitle1" component="body1">
+                    {film.age} years
+                  </Typography>
+                </StyledTableCell>
 
-                  <StyledTableCell>
-                    <Typography variant="subtitle1" component="body1">
-                      {film.director}
-                    </Typography>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </ThemeProvider>
+                <StyledTableCell>
+                  <Typography variant="subtitle1" component="body1">
+                    {film.director}
+                  </Typography>
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
+
       {movieInfoModal && <MovieInfo id={movieInfoModal} close={() => setMovieInfoModal(null)} />}
     </>
   );
