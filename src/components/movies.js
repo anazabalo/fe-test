@@ -3,15 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { GET_ALL_FILMS } from '../graphql/queries';
 import MovieInfo from './movieInfo';
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
+import {
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography,
+  Box,
+} from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -62,6 +65,8 @@ const Movies = () => {
   const [movieInfoModal, setMovieInfoModal] = useState(null);
   const { loading, error, data } = useQuery(GET_ALL_FILMS);
 
+  const matches = useMediaQuery('(min-width:600px)');
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -93,22 +98,22 @@ const Movies = () => {
           <TableHead>
             <TableRow>
               <StyledTableCell>
-                <Typography variant="h4" component="h3">
-                  Title
+                <Typography variant="h4" component="h3" color="secondary">
+                  Movie Title
                 </Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography variant="h4" component="h3">
+                <Typography variant="h4" component="h3" color="secondary">
                   Released
                 </Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography variant="h4" component="h3">
+                <Typography variant="h4" component="h3" color="secondary">
                   Age
                 </Typography>
               </StyledTableCell>
               <StyledTableCell>
-                <Typography variant="h4" component="h3">
+                <Typography variant="h4" component="h3" color="secondary">
                   Director
                 </Typography>
               </StyledTableCell>

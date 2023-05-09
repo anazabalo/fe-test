@@ -25,6 +25,10 @@ const theme = createTheme({
       fontSize: 20,
       fontWeight: 400,
     },
+
+    button: {
+      fontSize: 20,
+    },
   },
   palette: {
     mode: 'dark',

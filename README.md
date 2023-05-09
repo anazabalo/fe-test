@@ -10,7 +10,7 @@ In `components/movies.js` all the movies in the API is listed in a table. Use an
 If you click on a movie title a modal `components/movieInfo.js` is shown. Your tasks are:
 
 1. Add a column that displays how old the movie is in years
-2. Style the modal to (so it becomes an actual modal)
+2. Style the modal to float on top of the main page (so it becomes an actual modal)
 3. Add more information to the modal:
    - The opening crawl
    - A list of planets in the movie
