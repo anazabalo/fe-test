@@ -5,6 +5,8 @@ import Movies from './components/movies';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
+//Customize the Theme for the whole project
+
 const theme = createTheme({
   typography: {
     h1: {

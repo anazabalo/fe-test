@@ -14,7 +14,8 @@ import {
   Box,
 } from '@mui/material';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import useMediaQuery from '@mui/material/useMediaQuery';
+
+//Stlyes for cells and rows
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -54,18 +55,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
   },
 }));
-function calculateAge(releaseDate) {
+
+//Function that caculate how old are the movies to later add it to the table columns
+
+const calculateAge = (releaseDate) => {
   const date = new Date(releaseDate);
   const now = new Date();
   const diff = now.getTime() - date.getTime();
   const yearDiff = diff / (1000 * 60 * 60 * 24 * 365.25); // 365.25 days in a year to account for leap years
-  return yearDiff.toFixed(0);
-}
+  return yearDiff.toFixed();
+};
+
 const Movies = () => {
   const [movieInfoModal, setMovieInfoModal] = useState(null);
   const { loading, error, data } = useQuery(GET_ALL_FILMS);
-
-  const matches = useMediaQuery('(min-width:600px)');
 
   if (loading) {
     return <p>Loading...</p>;
@@ -74,6 +77,8 @@ const Movies = () => {
   if (error) {
     return <p>Error : {error.message}</p>;
   }
+
+  //Adds the 'age' column
 
   const filmsWithAge = data.allFilms.films.map((film) => {
     const age = calculateAge(film.releaseDate);
@@ -119,6 +124,7 @@ const Movies = () => {
               </StyledTableCell>
             </TableRow>
           </TableHead>
+
           <TableBody>
             {filmsWithAge.map((film) => (
               <StyledTableRow key={film.id}>
